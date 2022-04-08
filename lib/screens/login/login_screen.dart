@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:user_account_sample/screens/widgets/custom_action_button.dart';
-import 'package:user_account_sample/screens/widgets/custom_text_field.dart';
+import 'package:user_account_sample/screens/home/home_screen.dart';
+import 'package:user_account_sample/screens/signup/signup_screen.dart';
+
+import '../../widgets/custom_action_button.dart';
+import '../../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatelessWidget {
   String _username = '';
@@ -24,9 +27,15 @@ class LoginScreen extends StatelessWidget {
               hint: 'password',
               isObscureText: true,
               returnInputValue: getPassword),
+          TextButton(
+              onPressed: () {
+                signUpButtonPressed(context);
+              },
+              child: Text('sign up now!')),
           CustomActionButton(
             buttonText: 'login',
             returnClick: loginButtonPressed,
+            mainPageContext: context,
           ),
         ],
       ),
@@ -35,15 +44,25 @@ class LoginScreen extends StatelessWidget {
 
   void getUsername(String uname) {
     _username = uname;
-    print(_username);
+    // print(_username);
   }
 
   void getPassword(String pass) {
     _password = pass;
-    print(_password);
+    // print(_password);
   }
 
-  void loginButtonPressed() {
-    print('login pressed');
+  void loginButtonPressed(BuildContext context) {
+    // print('login pressed');
+
+    if (_username == 'jithu' && _password == '1234') {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (ctx) => HomeScreen()));
+    }
+  }
+
+  void signUpButtonPressed(BuildContext context) {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (ctx) => SignupScreen()));
   }
 }

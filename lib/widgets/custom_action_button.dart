@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 class CustomActionButton extends StatelessWidget {
   String buttonText;
   Function returnClick;
+  BuildContext mainPageContext;
 
-  CustomActionButton({required this.buttonText, required this.returnClick});
+  CustomActionButton(
+      {required this.buttonText,
+      required this.returnClick,
+      required this.mainPageContext});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class CustomActionButton extends StatelessWidget {
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20)))),
         onPressed: () {
-          returnClick();
+          returnClick(mainPageContext);
         },
         child: Text(
           buttonText,
