@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:user_account_sample/constants.dart';
 import 'package:user_account_sample/screens/login/login_screen.dart';
 import 'package:user_account_sample/screens/signup/signup_screen.dart';
 
-void main() {
-  return runApp(MyApp());
+late Box hiveBox;
+
+void main() async {
+  runApp(MyApp());
+  await Hive.initFlutter();
+  hiveBox = await Hive.openBox('users');
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: kLoginPageRoute,
+      initialRoute: kSignupPageRoute,
       routes: {
         kLoginPageRoute: (context) => LoginScreen(),
         kSignupPageRoute: (context) => SignupScreen(),

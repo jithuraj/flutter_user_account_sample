@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  String? name;
+  HomeScreen({this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Container(
         child: Center(
-          child: Text('Welcome home.'),
+          child: Text('Hi $name, Welcome home.'),
         ),
       ),
     );

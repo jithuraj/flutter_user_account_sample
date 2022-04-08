@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user_account_sample/constants.dart';
+import 'package:user_account_sample/main.dart';
 import 'package:user_account_sample/screens/home/home_screen.dart';
 import 'package:user_account_sample/screens/signup/signup_screen.dart';
 
@@ -53,12 +55,10 @@ class LoginScreen extends StatelessWidget {
   }
 
   void loginButtonPressed(BuildContext context) {
-    // print('login pressed');
+    Map fromDb = hiveBox.get(kHiveDbAccountsKey);
+    Map<String, String> accounts = fromDb.cast<String, String>();
 
-    if (_username == 'jithu' && _password == '1234') {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (ctx) => HomeScreen()));
-    }
+    if (accounts[_username] == null) {}
   }
 
   void signUpButtonPressed(BuildContext context) {
